@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For You 🌹</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Itim&family=Handlee&family=Sriracha&display=swap" rel="stylesheet">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- TypeIt Library -->
+  <script src="https://cdn.jsdelivr.net/npm/typeit@8.7.1/dist/index.umd.js"></script>
+</head>
+<body>
+  <!-- Background Overlay -->
+  <div class="background-overlay" data-src="images/wpnime.jpeg"></div>
+
+  <!-- Background Music -->
+  <audio id="bgMusic" loop>
+    <source src="music/bg-music.mp3" type="audio/mpeg">
+  </audio>
+  <button id="musicToggle" class="music-toggle" onclick="toggleMusic()">
+    🔇
+  </button>
+
+  <!-- Page 1: Welcome -->
+  <div id="hal1" class="kotak">
+    <div id="stiker1" class="stiker">
+      <img id="stiker1a" src="images/pusn3.gif" alt="Sticker">
+      <img id="stiker1b" class="sembunyi" src="images/terlope2.gif" alt="Sticker Alternative">
+    </div>
+    <p>Hello You! 🥳</p>
+    <div class="tombol">
+      <button onclick="pindahHal(2)">Start</button>
+    </div>
+  </div>
+
+  <!-- Page 2: Envelope -->
+  <div id="hal2" class="sembunyi">
+    <div class="envlope-wrapper">
+      <div id="envelope" class="close">
+        <div class="front flap"></div>
+        <div class="front pocket"></div>
+        <div class="letter">
+          <div class="letter-corner corner-tl"></div>
+          <div class="letter-corner corner-br"></div>
+          <div class="message">
+            <p>Hello You! 💐</p>
+          </div>
+        </div>
+        <div class="hearts">
+          <div class="heart a1"></div>
+          <div class="heart a2"></div>
+          <div class="heart a3"></div>
+        </div>
+        <div class="sparkles">
+          <div class="sparkle s1"></div>
+          <div class="sparkle s2"></div>
+          <div class="sparkle s3"></div>
+        </div>
+      </div>
+    </div>
+    <div class="reset">
+      <button onclick="bukaEnvelope()">Open</button>
+    </div>
+  </div>
+
+  <!-- Page 3: Birth Year Input -->
+  <div id="hal3" class="kotak sembunyi">
+    <div id="stiker2" class="stiker">
+      <img id="stiker2a" src="images/pusn2.gif" alt="Sticker">
+      <img id="stiker2b" class="sembunyi" src="images/terlope2.gif" alt="Sticker Alternative">
+    </div>
+    <div class="input-range-container">
+      <label for="tahunLahir">What's Your Birth Year? 🤔</label>
+      <input type="range" id="tahunLahir" min="1990" max="2020" value="2000">
+      <output id="tahunLahirOutput">2000</output>
+    </div>
+    <div class="tombol">
+      <button onclick="pindahHal(4)">Continue</button>
+    </div>
+  </div>
+
+  <!-- Page 4: Memory Game -->
+  <div id="hal4" class="kotak sembunyi">
+    <canvas id="game-canvas"></canvas>
+    <h2>Memory Game 🎮</h2>
+    <p>Match these cards! 😋</p>
+    <div id="kotakPesan"></div>
+    <div id="papanGame" class="papanGame"></div>
+    <p id="statusGame"></p>
+    <button id="lanjut" onclick="pindahHal(5)" class="sembunyi">See Love Message!</button>
+    <button id="ulang" onclick="mulaiHal4()" class="tombolCadangan sembunyi">Try Again!</button>
+  </div>
+
+  <!-- Page 5: Memory Photos -->
+  <div id="hal5" class="kotak sembunyi">
+    <h2>Your Precious Moments 💕</h2>
+    <p style="margin-bottom: 20px;">Unforgettable beautiful memories...</p>
+
+    <!-- Gallery Slideshow -->
+    <div class="gallery-container">
+      <div class="gallery-wrapper">
+        <div class="photo-slide active">
+          <img src="photos/mmexport1756921379319.jpg" alt="Your Memory 1">
+          <p class="photo-caption">Shining Bright Moment 💕</p>
+        </div>
+        <div class="photo-slide">
+          <img src="photos/mmexport1756921383685.jpg" alt="Your Memory 2">
+          <p class="photo-caption">A Quiet Afternoon Memory 🌹</p>
+        </div>
+        <div class="photo-slide">
+          <img src="photos/mmexport1757149087590.jpg" alt="Your Memory 3">
+          <p class="photo-caption">Little Things 💖</p>
+        </div>
+        <div class="photo-slide">
+          <img src="photos/mmexport1757864866354.jpg" alt="Your Memory 4">
+          <p class="photo-caption">Sweetest Smile 😊</p>
+        </div>
+        <div class="photo-slide">
+          <img src="photos/mmexport1759585310212.jpg" alt="Our Memory 5">
+          <p class="photo-caption">Vivid Memories 🎉</p>
+        </div>
+        <div class="photo-slide">
+          <img src="photos/mmexport1759585341258.jpg" alt="Our Memory 6">
+          <p class="photo-caption">A Dose of Cute 💝</p>
+        </div>
+        <div class="photo-slide">
+          <img src="photos/mmexport1759585352253.jpg" alt="Our Memory 7">
+          <p class="photo-caption">Island Escape 🌟</p>
+        </div>
+        <div class="photo-slide">
+          <img src="photos/mmexport1759585380714.jpg" alt="Our Memory 8">
+          <p class="photo-caption">Serenity 🎂</p>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <button class="gallery-btn prev" onclick="changePhoto(-1)">❮</button>
+      <button class="gallery-btn next" onclick="changePhoto(1)">❯</button>
+
+      <!-- Dots Indicator -->
+      <div class="gallery-dots">
+        <span class="dot active" onclick="currentPhoto(1)"></span>
+        <span class="dot" onclick="currentPhoto(2)"></span>
+        <span class="dot" onclick="currentPhoto(3)"></span>
+        <span class="dot" onclick="currentPhoto(4)"></span>
+        <span class="dot" onclick="currentPhoto(5)"></span>
+        <span class="dot" onclick="currentPhoto(6)"></span>
+        <span class="dot" onclick="currentPhoto(7)"></span>
+        <span class="dot" onclick="currentPhoto(8)"></span>
+      </div>
+    </div>
+
+    <div class="tombol">
+      <button onclick="pindahHal(6)">Continue 💝</button>
+    </div>
+  </div>
+
+  <!-- Page 6: Final Message -->
+  <div id="hal6" class="kotak sembunyi">
+    <canvas id="fireworks-canvas"></canvas>
+    <div id="stiker3" class="stiker">
+      <img id="stiker3a" src="images/panah.gif" alt="Sticker">
+      <img id="stiker3b" class="sembunyi" src="images/terlope2.gif" alt="Sticker Alternative">
+    </div>
+    <div class="textOverlay">
+      <p id="teksCinta"></p>
+      <p id="pesanAkhir"></p>
+      <p id="teksLucu"></p>
+    </div>
+    <div class="tombol">
+      <button onclick="lihatGallery()">View Photo Gallery 💕</button>
+    </div>
+  </div>
+
+  <!-- Background Decorations -->
+  <div class="wrapper">
+    <div class="circ">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+
+  <!-- External JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>

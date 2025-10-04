@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Pesan Akhir</title>
+  <script src="https://cdn.jsdelivr.net/npm/typeit@8.7.1/dist/index.umd.js"></script>
+  <style>
+    body {
+      background: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      padding: 50px;
+    }
+    p {
+      margin: 20px 0;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Test TypeIt & Pesan Akhir</h1>
+  <div id="testArea">
+    <p id="teksCinta"></p>
+    <p id="pesanAkhir"></p>
+    <p id="teksLucu"></p>
+  </div>
+
+  <button onclick="testTypeIt()">Start Test</button>
+
+  <script>
+    function testTypeIt() {
+      console.log('Test TypeIt dimulai...');
+      console.log('TypeIt loaded?', typeof TypeIt !== 'undefined');
+
+      const usiaKamu = 25; // Test age
+
+      const txtDoa = `Selamat Ulang Tahun ke-<b>${usiaKamu}</b>! 🎉🎂`;
+      const txtPesanAkhir = "<b>Happy Birthday, yaa! 🥳</b> Ciyee.. Ada yang bertambah usianya nih 😆🤏<br><br>Semoga di usia baru ini, kamu selalu dikelilingi kebahagiaan, kesehatan, dan semoga segala doa serta cita-cita kamu bisa terwujud 🫶";
+      const txtLucu = "Dan semoga hari ini menjadi awal dari tahun yang penuh keberkahan dan kebahagiaan untukmu yaa 💐<br><br><b><i>Wish you all the best!</i> 🎉🥳</b>";
+
+      new TypeIt("#teksCinta", {
+        strings: txtDoa,
+        speed: 20,
+        startDelay: 100,
+        afterComplete: function () {
+          console.log('teksCinta selesai');
+          const cursor = document.querySelector("#teksCinta .ti-cursor");
+          if (cursor) cursor.style.display = "none";
+
+          new TypeIt("#pesanAkhir", {
+            strings: txtPesanAkhir,
+            speed: 20,
+            waitUntilVisible: true,
+            afterComplete: function () {
+              console.log('pesanAkhir selesai');
+              const cursor2 = document.querySelector("#pesanAkhir .ti-cursor");
+              if (cursor2) cursor2.style.display = "none";
+
+              new TypeIt("#teksLucu", {
+                strings: txtLucu,
+                speed: 20,
+                waitUntilVisible: true,
+                afterComplete: function () {
+                  console.log('teksLucu selesai - SEMUA BERHASIL!');
+                  const cursor3 = document.querySelector("#teksLucu .ti-cursor");
+                  if (cursor3) cursor3.style.display = "none";
+                }
+              }).go();
+            }
+          }).go();
+        }
+      }).go();
+    }
+
+    // Auto test on load
+    window.addEventListener('load', () => {
+      setTimeout(testTypeIt, 1000);
+    });
+  </script>
+</body>
+</html>
