@@ -297,12 +297,6 @@ function mulaiHal6() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    // Disable auto-scroll completely
-    const textContainer = document.querySelector("#hal6 .textOverlay");
-    if (textContainer) {
-        textContainer.style.scrollBehavior = 'auto';
-    }
-
     // Tambah delay kecil untuk memastikan element sudah siap
     setTimeout(() => {
         new TypeIt("#teksCinta", {

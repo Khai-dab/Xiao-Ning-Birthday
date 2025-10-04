@@ -53,6 +53,7 @@ body {
     max-width: 80%;
     width: 400px;
     min-height: 200px;
+    max-height: fit-content;
     position: relative;
     z-index: 1;
 }
@@ -433,10 +434,8 @@ h1, h2 {
     margin: auto;
     width: 100%;
     min-height: 20px;
-    max-height: 220px;
+    max-height: fit-content;
     overflow-y: visible;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
     z-index: 10;
 }
 
