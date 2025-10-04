@@ -279,6 +279,8 @@ function mulaiKembangApi(canvasId) {
 }
 
 // Page 6: Final Message
+let isHal6Initialized = false;
+
 function mulaiHal6() {
     const stiker3 = document.getElementById('stiker3');
     const stiker3a = document.getElementById('stiker3a');
@@ -296,6 +298,20 @@ function mulaiHal6() {
     const canvas = document.getElementById('fireworks-canvas');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+
+    // Check if already initialized - if yes, just show full text immediately
+    if (isHal6Initialized) {
+        document.getElementById('teksCinta').innerHTML = txtDoa;
+        document.getElementById('pesanAkhir').innerHTML = txtPesanAkhir;
+        document.getElementById('teksLucu').innerHTML = txtLucu;
+        document.querySelector("#hal6 .tombol").style = "transform:scale(1);opacity:1;";
+        if (!intervalHati) intervalHati = setInterval(hatiJatuh, 200);
+        mulaiKembangApi('fireworks-canvas');
+        return;
+    }
+
+    // First time - run typing animation
+    isHal6Initialized = true;
 
     // Tambah delay kecil untuk memastikan element sudah siap
     setTimeout(() => {
