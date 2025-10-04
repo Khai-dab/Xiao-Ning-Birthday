@@ -434,12 +434,10 @@ h1, h2 {
     width: 100%;
     min-height: 20px;
     max-height: 220px;
-    overflow-y: auto;
+    overflow-y: visible;
     -ms-overflow-style: none;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 111, 145, 0.5) rgba(255, 255, 255, 0.1);
+    scrollbar-width: none;
     z-index: 10;
-    scroll-behavior: auto;
 }
 
 .textOverlay::-webkit-scrollbar {
